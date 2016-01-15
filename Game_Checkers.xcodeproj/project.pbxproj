@@ -11,9 +11,13 @@
 		8BEF61CA1C49321100408924 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61C91C49321100408924 /* main.m */; };
 		8BEF61CD1C49321100408924 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61CC1C49321100408924 /* ViewController.m */; };
 		8BEF61CF1C49321100408924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BEF61CE1C49321100408924 /* Assets.xcassets */; };
-		8BEF61D21C49321100408924 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BEF61D01C49321100408924 /* Main.storyboard */; };
 		8BEF61DD1C49321100408924 /* Game_CheckersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61DC1C49321100408924 /* Game_CheckersTests.m */; };
 		8BEF61E81C49321100408924 /* Game_CheckersUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61E71C49321100408924 /* Game_CheckersUITests.m */; };
+		8BEF61F71C494B4000408924 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61F61C494B4000408924 /* Engine.m */; };
+		8BEF61FE1C494B5500408924 /* Checkers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61F91C494B5500408924 /* Checkers.m */; };
+		8BEF61FF1C494B5500408924 /* FieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61FB1C494B5500408924 /* FieldView.m */; };
+		8BEF62001C494B5500408924 /* Players.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61FD1C494B5500408924 /* Players.m */; };
+		8BEF62021C494B6500408924 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BEF62011C494B6500408924 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +45,6 @@
 		8BEF61CB1C49321100408924 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8BEF61CC1C49321100408924 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8BEF61CE1C49321100408924 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8BEF61D11C49321100408924 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8BEF61D31C49321100408924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BEF61D81C49321100408924 /* Game_CheckersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Game_CheckersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BEF61DC1C49321100408924 /* Game_CheckersTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game_CheckersTests.m; sourceTree = "<group>"; };
@@ -49,6 +52,15 @@
 		8BEF61E31C49321100408924 /* Game_CheckersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Game_CheckersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BEF61E71C49321100408924 /* Game_CheckersUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game_CheckersUITests.m; sourceTree = "<group>"; };
 		8BEF61E91C49321100408924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BEF61F51C494B4000408924 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
+		8BEF61F61C494B4000408924 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Engine.m; sourceTree = "<group>"; };
+		8BEF61F81C494B5500408924 /* Checkers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkers.h; sourceTree = "<group>"; };
+		8BEF61F91C494B5500408924 /* Checkers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkers.m; sourceTree = "<group>"; };
+		8BEF61FA1C494B5500408924 /* FieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldView.h; sourceTree = "<group>"; };
+		8BEF61FB1C494B5500408924 /* FieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldView.m; sourceTree = "<group>"; };
+		8BEF61FC1C494B5500408924 /* Players.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Players.h; sourceTree = "<group>"; };
+		8BEF61FD1C494B5500408924 /* Players.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Players.m; sourceTree = "<group>"; };
+		8BEF62011C494B6500408924 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +115,16 @@
 				8BEF61C61C49321100408924 /* AppDelegate.m */,
 				8BEF61CB1C49321100408924 /* ViewController.h */,
 				8BEF61CC1C49321100408924 /* ViewController.m */,
+				8BEF61F51C494B4000408924 /* Engine.h */,
+				8BEF61F61C494B4000408924 /* Engine.m */,
+				8BEF61F81C494B5500408924 /* Checkers.h */,
+				8BEF61F91C494B5500408924 /* Checkers.m */,
+				8BEF61FA1C494B5500408924 /* FieldView.h */,
+				8BEF61FB1C494B5500408924 /* FieldView.m */,
+				8BEF61FC1C494B5500408924 /* Players.h */,
+				8BEF61FD1C494B5500408924 /* Players.m */,
 				8BEF61CE1C49321100408924 /* Assets.xcassets */,
-				8BEF61D01C49321100408924 /* Main.storyboard */,
+				8BEF62011C494B6500408924 /* Main.storyboard */,
 				8BEF61D31C49321100408924 /* Info.plist */,
 				8BEF61C81C49321100408924 /* Supporting Files */,
 			);
@@ -240,8 +260,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEF62021C494B6500408924 /* Main.storyboard in Resources */,
 				8BEF61CF1C49321100408924 /* Assets.xcassets in Resources */,
-				8BEF61D21C49321100408924 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,9 +286,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEF62001C494B5500408924 /* Players.m in Sources */,
 				8BEF61CD1C49321100408924 /* ViewController.m in Sources */,
+				8BEF61F71C494B4000408924 /* Engine.m in Sources */,
 				8BEF61CA1C49321100408924 /* main.m in Sources */,
+				8BEF61FE1C494B5500408924 /* Checkers.m in Sources */,
 				8BEF61C71C49321100408924 /* AppDelegate.m in Sources */,
+				8BEF61FF1C494B5500408924 /* FieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,17 +326,6 @@
 			targetProxy = 8BEF61E41C49321100408924 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		8BEF61D01C49321100408924 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8BEF61D11C49321100408924 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8BEF61EA1C49321100408924 /* Debug */ = {
