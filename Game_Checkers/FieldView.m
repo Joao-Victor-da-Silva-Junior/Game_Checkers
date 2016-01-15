@@ -20,8 +20,6 @@
         [self setFigures];
         if (_isChose) {
             if (((int)self.pointerPosition.x / 50 + (int)self.pointerPosition.y / 50) % 2 == 0) {
-                //цукацу
-                //123123
                 [self setRedPointer];
             } else {
                 [self setYellowPointer];
