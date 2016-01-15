@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8BEF61C71C49321100408924 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61C61C49321100408924 /* AppDelegate.m */; };
+		8BEF61CA1C49321100408924 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61C91C49321100408924 /* main.m */; };
+		8BEF61CD1C49321100408924 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61CC1C49321100408924 /* ViewController.m */; };
+		8BEF61CF1C49321100408924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BEF61CE1C49321100408924 /* Assets.xcassets */; };
+		8BEF61D21C49321100408924 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BEF61D01C49321100408924 /* Main.storyboard */; };
+		8BEF61DD1C49321100408924 /* Game_CheckersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61DC1C49321100408924 /* Game_CheckersTests.m */; };
+		8BEF61E81C49321100408924 /* Game_CheckersUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61E71C49321100408924 /* Game_CheckersUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8BEF61D91C49321100408924 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BEF61BA1C49321100408924 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BEF61C11C49321100408924;
+			remoteInfo = Game_Checkers;
+		};
+		8BEF61E41C49321100408924 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BEF61BA1C49321100408924 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BEF61C11C49321100408924;
+			remoteInfo = Game_Checkers;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8BEF61C21C49321100408924 /* Game_Checkers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game_Checkers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BEF61C51C49321100408924 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8BEF61C61C49321100408924 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8BEF61C91C49321100408924 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8BEF61CB1C49321100408924 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8BEF61CC1C49321100408924 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8BEF61CE1C49321100408924 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8BEF61D11C49321100408924 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8BEF61D31C49321100408924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BEF61D81C49321100408924 /* Game_CheckersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Game_CheckersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BEF61DC1C49321100408924 /* Game_CheckersTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game_CheckersTests.m; sourceTree = "<group>"; };
+		8BEF61DE1C49321100408924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BEF61E31C49321100408924 /* Game_CheckersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Game_CheckersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BEF61E71C49321100408924 /* Game_CheckersUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game_CheckersUITests.m; sourceTree = "<group>"; };
+		8BEF61E91C49321100408924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8BEF61BF1C49321100408924 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BEF61D51C49321100408924 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BEF61E01C49321100408924 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8BEF61B91C49321100408924 = {
+			isa = PBXGroup;
+			children = (
+				8BEF61C41C49321100408924 /* Game_Checkers */,
+				8BEF61DB1C49321100408924 /* Game_CheckersTests */,
+				8BEF61E61C49321100408924 /* Game_CheckersUITests */,
+				8BEF61C31C49321100408924 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8BEF61C31C49321100408924 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61C21C49321100408924 /* Game_Checkers.app */,
+				8BEF61D81C49321100408924 /* Game_CheckersTests.xctest */,
+				8BEF61E31C49321100408924 /* Game_CheckersUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8BEF61C41C49321100408924 /* Game_Checkers */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61C51C49321100408924 /* AppDelegate.h */,
+				8BEF61C61C49321100408924 /* AppDelegate.m */,
+				8BEF61CB1C49321100408924 /* ViewController.h */,
+				8BEF61CC1C49321100408924 /* ViewController.m */,
+				8BEF61CE1C49321100408924 /* Assets.xcassets */,
+				8BEF61D01C49321100408924 /* Main.storyboard */,
+				8BEF61D31C49321100408924 /* Info.plist */,
+				8BEF61C81C49321100408924 /* Supporting Files */,
+			);
+			path = Game_Checkers;
+			sourceTree = "<group>";
+		};
+		8BEF61C81C49321100408924 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61C91C49321100408924 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8BEF61DB1C49321100408924 /* Game_CheckersTests */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61DC1C49321100408924 /* Game_CheckersTests.m */,
+				8BEF61DE1C49321100408924 /* Info.plist */,
+			);
+			path = Game_CheckersTests;
+			sourceTree = "<group>";
+		};
+		8BEF61E61C49321100408924 /* Game_CheckersUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61E71C49321100408924 /* Game_CheckersUITests.m */,
+				8BEF61E91C49321100408924 /* Info.plist */,
+			);
+			path = Game_CheckersUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8BEF61C11C49321100408924 /* Game_Checkers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BEF61EC1C49321100408924 /* Build configuration list for PBXNativeTarget "Game_Checkers" */;
+			buildPhases = (
+				8BEF61BE1C49321100408924 /* Sources */,
+				8BEF61BF1C49321100408924 /* Frameworks */,
+				8BEF61C01C49321100408924 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Game_Checkers;
+			productName = Game_Checkers;
+			productReference = 8BEF61C21C49321100408924 /* Game_Checkers.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8BEF61D71C49321100408924 /* Game_CheckersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BEF61EF1C49321100408924 /* Build configuration list for PBXNativeTarget "Game_CheckersTests" */;
+			buildPhases = (
+				8BEF61D41C49321100408924 /* Sources */,
+				8BEF61D51C49321100408924 /* Frameworks */,
+				8BEF61D61C49321100408924 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8BEF61DA1C49321100408924 /* PBXTargetDependency */,
+			);
+			name = Game_CheckersTests;
+			productName = Game_CheckersTests;
+			productReference = 8BEF61D81C49321100408924 /* Game_CheckersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8BEF61E21C49321100408924 /* Game_CheckersUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BEF61F21C49321100408924 /* Build configuration list for PBXNativeTarget "Game_CheckersUITests" */;
+			buildPhases = (
+				8BEF61DF1C49321100408924 /* Sources */,
+				8BEF61E01C49321100408924 /* Frameworks */,
+				8BEF61E11C49321100408924 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8BEF61E51C49321100408924 /* PBXTargetDependency */,
+			);
+			name = Game_CheckersUITests;
+			productName = Game_CheckersUITests;
+			productReference = 8BEF61E31C49321100408924 /* Game_CheckersUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8BEF61BA1C49321100408924 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Виктор";
+				TargetAttributes = {
+					8BEF61C11C49321100408924 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					8BEF61D71C49321100408924 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 8BEF61C11C49321100408924;
+					};
+					8BEF61E21C49321100408924 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 8BEF61C11C49321100408924;
+					};
+				};
+			};
+			buildConfigurationList = 8BEF61BD1C49321100408924 /* Build configuration list for PBXProject "Game_Checkers" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8BEF61B91C49321100408924;
+			productRefGroup = 8BEF61C31C49321100408924 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8BEF61C11C49321100408924 /* Game_Checkers */,
+				8BEF61D71C49321100408924 /* Game_CheckersTests */,
+				8BEF61E21C49321100408924 /* Game_CheckersUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8BEF61C01C49321100408924 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BEF61CF1C49321100408924 /* Assets.xcassets in Resources */,
+				8BEF61D21C49321100408924 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BEF61D61C49321100408924 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BEF61E11C49321100408924 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8BEF61BE1C49321100408924 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BEF61CD1C49321100408924 /* ViewController.m in Sources */,
+				8BEF61CA1C49321100408924 /* main.m in Sources */,
+				8BEF61C71C49321100408924 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BEF61D41C49321100408924 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BEF61DD1C49321100408924 /* Game_CheckersTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BEF61DF1C49321100408924 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BEF61E81C49321100408924 /* Game_CheckersUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8BEF61DA1C49321100408924 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BEF61C11C49321100408924 /* Game_Checkers */;
+			targetProxy = 8BEF61D91C49321100408924 /* PBXContainerItemProxy */;
+		};
+		8BEF61E51C49321100408924 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BEF61C11C49321100408924 /* Game_Checkers */;
+			targetProxy = 8BEF61E41C49321100408924 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8BEF61D01C49321100408924 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BEF61D11C49321100408924 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8BEF61EA1C49321100408924 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8BEF61EB1C49321100408924 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8BEF61ED1C49321100408924 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Game_Checkers/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Viktor-Volkov.Game-Checkers";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8BEF61EE1C49321100408924 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Game_Checkers/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Viktor-Volkov.Game-Checkers";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8BEF61F01C49321100408924 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Game_CheckersTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Viktor-Volkov.Game-CheckersTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game_Checkers.app/Contents/MacOS/Game_Checkers";
+			};
+			name = Debug;
+		};
+		8BEF61F11C49321100408924 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Game_CheckersTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Viktor-Volkov.Game-CheckersTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game_Checkers.app/Contents/MacOS/Game_Checkers";
+			};
+			name = Release;
+		};
+		8BEF61F31C49321100408924 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Game_CheckersUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Viktor-Volkov.Game-CheckersUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Game_Checkers;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		8BEF61F41C49321100408924 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Game_CheckersUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Viktor-Volkov.Game-CheckersUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Game_Checkers;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8BEF61BD1C49321100408924 /* Build configuration list for PBXProject "Game_Checkers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BEF61EA1C49321100408924 /* Debug */,
+				8BEF61EB1C49321100408924 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BEF61EC1C49321100408924 /* Build configuration list for PBXNativeTarget "Game_Checkers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BEF61ED1C49321100408924 /* Debug */,
+				8BEF61EE1C49321100408924 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8BEF61EF1C49321100408924 /* Build configuration list for PBXNativeTarget "Game_CheckersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BEF61F01C49321100408924 /* Debug */,
+				8BEF61F11C49321100408924 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8BEF61F21C49321100408924 /* Build configuration list for PBXNativeTarget "Game_CheckersUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BEF61F31C49321100408924 /* Debug */,
+				8BEF61F41C49321100408924 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8BEF61BA1C49321100408924 /* Project object */;
+}
