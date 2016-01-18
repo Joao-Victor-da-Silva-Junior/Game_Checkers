@@ -10,10 +10,12 @@
 
 @interface Players : NSObject
 
+@property (assign, nonatomic) BOOL isWhite;
 @property (strong, nonatomic) NSMutableArray *arrayOfCheckers;
+@property (strong, nonatomic) NSMutableDictionary *dictionaryOfCheckers;
 
-- (instancetype)initMe;
+- (instancetype)initWhite:(BOOL) isWhite;
 
-- (instancetype)initOpponent;
+- (NSMutableDictionary *) returnDictionaryOfColors;
 
 @end

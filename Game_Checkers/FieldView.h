@@ -14,7 +14,6 @@
 @property (assign, nonatomic) BOOL isChose;
 @property (assign, nonatomic) BOOL needRedIndicator;
 @property (assign, nonatomic) NSPoint pointerPosition;
-@property (strong, nonatomic) NSMutableArray *arrayOfAllCheckers;
 @property (strong, nonatomic) NSMutableDictionary *dictionaryOfAllField;
 
 @end

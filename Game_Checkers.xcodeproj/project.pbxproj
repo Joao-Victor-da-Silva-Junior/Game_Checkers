@@ -111,18 +111,12 @@
 		8BEF61C41C49321100408924 /* Game_Checkers */ = {
 			isa = PBXGroup;
 			children = (
+				8BEF62031C4D53FA00408924 /* Model */,
+				8BEF62041C4D540000408924 /* View */,
+				8BEF62051C4D540500408924 /* Controller */,
+				8BEF62061C4D541900408924 /* Game Classes */,
 				8BEF61C51C49321100408924 /* AppDelegate.h */,
 				8BEF61C61C49321100408924 /* AppDelegate.m */,
-				8BEF61CB1C49321100408924 /* ViewController.h */,
-				8BEF61CC1C49321100408924 /* ViewController.m */,
-				8BEF61F51C494B4000408924 /* Engine.h */,
-				8BEF61F61C494B4000408924 /* Engine.m */,
-				8BEF61F81C494B5500408924 /* Checkers.h */,
-				8BEF61F91C494B5500408924 /* Checkers.m */,
-				8BEF61FA1C494B5500408924 /* FieldView.h */,
-				8BEF61FB1C494B5500408924 /* FieldView.m */,
-				8BEF61FC1C494B5500408924 /* Players.h */,
-				8BEF61FD1C494B5500408924 /* Players.m */,
 				8BEF61CE1C49321100408924 /* Assets.xcassets */,
 				8BEF62011C494B6500408924 /* Main.storyboard */,
 				8BEF61D31C49321100408924 /* Info.plist */,
@@ -155,6 +149,44 @@
 				8BEF61E91C49321100408924 /* Info.plist */,
 			);
 			path = Game_CheckersUITests;
+			sourceTree = "<group>";
+		};
+		8BEF62031C4D53FA00408924 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61F51C494B4000408924 /* Engine.h */,
+				8BEF61F61C494B4000408924 /* Engine.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8BEF62041C4D540000408924 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61FA1C494B5500408924 /* FieldView.h */,
+				8BEF61FB1C494B5500408924 /* FieldView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8BEF62051C4D540500408924 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61CB1C49321100408924 /* ViewController.h */,
+				8BEF61CC1C49321100408924 /* ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8BEF62061C4D541900408924 /* Game Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF61FC1C494B5500408924 /* Players.h */,
+				8BEF61FD1C494B5500408924 /* Players.m */,
+				8BEF61F81C494B5500408924 /* Checkers.h */,
+				8BEF61F91C494B5500408924 /* Checkers.m */,
+			);
+			name = "Game Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

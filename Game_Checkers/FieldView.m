@@ -1,13 +1,4 @@
-//
-//  FieldView.m
-//  Курсач Шашки
-//
-//  Created by Виктор on 12.01.16.
-//  Copyright © 2016 Виктор. All rights reserved.
-//
-
 #import "FieldView.h"
-#import "Checkers.h"
 
 @implementation FieldView
 
@@ -62,17 +53,6 @@
             [circlePath fill];
         }
     }
-  /*  for (Checkers *check in self.arrayOfAllCheckers) {
-        if (check.isWhite) {
-            [[NSColor whiteColor] set];
-        } else {
-            [[NSColor blackColor] set];
-        }
-        circlePath = [NSBezierPath bezierPath];
-        [circlePath appendBezierPathWithOvalInRect:NSMakeRect(5 + (50 * check.position.x), 5 + (50 * check.position.y), 40, 40)];
-        [circlePath stroke];
-        [circlePath fill];
-    }*/
 }
 
 - (void) setYellowPointer {

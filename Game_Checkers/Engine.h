@@ -10,6 +10,10 @@
 
 @interface Engine : NSObject
 
+@property (assign, nonatomic) NSString *whichMove;
+
+#pragma mark - Class Methods
+
 + (BOOL) indicatorSetterOnCoordinate:(NSPoint) point
                  withFieldDictionary:(NSMutableDictionary *) dictionary
                        andPlayerMove:(NSString *) move;
@@ -18,5 +22,12 @@
                                      SecondTouch:(NSPoint) secondPoint
                                       playerMove:(NSString *) move
                               andFieldDictionary:(NSMutableDictionary *) fieldDictionary;
+
+
+#pragma mark - Object Methods
+
+- (NSMutableDictionary *) makeTransformationWithPoint:(NSPoint) point;
+
+- (NSMutableDictionary *) returnFirstLaunchFieldDictionary;
 
 @end

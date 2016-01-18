@@ -11,41 +11,41 @@
 
 @implementation Players
 
-- (instancetype)initMe {
+
+- (instancetype)initWhite:(BOOL) isWhite {
+    
     self = [super init];
     if (self) {
-        _arrayOfCheckers = [NSMutableArray arrayWithCapacity:12];
+        _isWhite = isWhite;
+        _dictionaryOfCheckers = [NSMutableDictionary dictionaryWithCapacity:12];
+        NSPoint range;
+        if (isWhite) {
+            range = NSMakePoint(0, 3);
+        } else {
+            range = NSMakePoint(5, 8);
+        }
         for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 3; j++) {
+            for (int j = (int) range.x; j < (int) range.y ; j++) {
                 if ((i + j) % 2 == 0) {
                     Checkers *checker = [[Checkers alloc] init];
-                    checker.isWhite = YES;
+                    checker.isWhite = isWhite;
                     checker.position = NSMakePoint(i, j);
                     [_arrayOfCheckers addObject:checker];
+                    [_dictionaryOfCheckers setObject:checker forKey:NSStringFromPoint(checker.position)];
                 }
             }
         }
+
     }
     return self;
 }
 
-- (instancetype)initOpponent {
-    self = [super init];
-    if (self) {
-        _arrayOfCheckers = [NSMutableArray arrayWithCapacity:12];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 5; j < 8; j++) {
-                if ((i + j) % 2 == 0) {
-                    Checkers *checker = [[Checkers alloc] init];
-                    checker.isWhite = NO;
-                    checker.position = NSMakePoint(i, j);
-                    [_arrayOfCheckers addObject:checker];
-                }
-            }
-        }
-
+- (NSMutableDictionary *) returnDictionaryOfColors {
+    NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
+    for (NSString *key in self.dictionaryOfCheckers) {
+        [returnDictionary setObject:self.isWhite? @"White":@"Black" forKey:key];
     }
-    return self;
+    return returnDictionary;
 }
 
 @end

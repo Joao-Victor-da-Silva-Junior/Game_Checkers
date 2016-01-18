@@ -7,16 +7,37 @@
 //
 
 #import "Engine.h"
+#import "FieldView.h"
+#import "Checkers.h"
+#import "Players.h"
 
 @interface Engine () {
-    
+    BOOL youHaveTwoPoints;
     NSPoint firstTouchPosition;
     NSPoint secondTouchPosition;
+    NSMutableDictionary *fieldDictionary;
+    NSMutableArray *arrayOfDiagonals;
+    Players *myPlayer;
+    Players *opponentPlayer;
 }
 
 @end
 
 @implementation Engine
+
+#pragma mark - Init Method
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _whichMove = @"White";
+        firstTouchPosition = secondTouchPosition = NSMakePoint(100, 100);
+    }
+    return self;
+}
+
+#pragma mark - Class Methods
 
 + (BOOL) indicatorSetterOnCoordinate:(NSPoint) point
                  withFieldDictionary:(NSMutableDictionary *) dictionary
@@ -32,12 +53,6 @@
                                      SecondTouch:(NSPoint) secondPoint
                                       playerMove:(NSString *) move
                               andFieldDictionary:(NSMutableDictionary *) fieldDictionary {
-    
-    
-   // NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionaryWithDictionary:fieldDictionary];
-  //  NSLog(@"First Point: %@", NSStringFromPoint(firstPoint));
-  //  NSLog(@"Second Point: %@", NSStringFromPoint(secondPoint));
-  //  NSLog(@"Moving is %@", move);
     
     CGFloat difference = fabs(firstPoint.y - secondPoint.y);
     NSUInteger direction;
@@ -55,7 +70,7 @@
             NSLog(@"possible move");
             if (![[fieldDictionary objectForKey:NSStringFromPoint(secondPoint)] isEqualToString:move]) {
                 NSLog(@"nil or enemy check");
-                if (![[fieldDictionary objectForKey:NSStringFromPoint(secondPoint)] isEqualToString:@"nil"]) {
+                if (fieldDictionary [NSStringFromPoint(secondPoint)] != nil) {
                     NSLog(@"ENEMY!!");
                     if (secondPoint.x < 7 && secondPoint.x > 0 && secondPoint.y > 0 && secondPoint.y < 7) {
                         NSLog(@"can eat");
@@ -107,25 +122,76 @@
         return nil;
     }
     
-    /*if (firstPoint.x == secondPoint.x + 1 || firstPoint.x == secondPoint.x - 1) {
-        if (difference == 1) {
-            if ([move isEqualToString:@"White"]) {
-                NSLog(@"change White");
-                [fieldDictionary setObject:@"nil" forKey:NSStringFromPoint(firstPoint)];
-                [fieldDictionary setObject:@"White" forKey:NSStringFromPoint(secondPoint)];
-            } else {
-                NSLog(@"change Black");
-                [fieldDictionary setObject:@"nil" forKey:NSStringFromPoint(firstPoint)];
-                [fieldDictionary setObject:@"Black" forKey:NSStringFromPoint(secondPoint)];
-            }
-        } else {
-            return nil;
-        }
-    } else {
-        return nil;
-    }*/
+    return fieldDictionary;
+}
+
+#pragma mark - Object Methods
+
+- (NSMutableDictionary *) returnFirstLaunchFieldDictionary {
+    
+    fieldDictionary = [NSMutableDictionary dictionary];
+    myPlayer = [[Players alloc] initWhite:YES];
+    opponentPlayer = [[Players alloc] initWhite:NO];
+    [fieldDictionary addEntriesFromDictionary:[myPlayer returnDictionaryOfColors]];
+    [fieldDictionary addEntriesFromDictionary:[opponentPlayer returnDictionaryOfColors]];
+    [self createArrayOfDiagonals];
     
     return fieldDictionary;
 }
+
+- (NSMutableDictionary *) makeTransformationWithPoint:(NSPoint) point {
+    [self setPoints:point];
+    if (youHaveTwoPoints) {
+        NSLog(@"TWO POINTS");
+        [self clearPoints];
+    }
+    
+    
+    return fieldDictionary;
+}
+
+- (void) setPoints:(NSPoint) p {
+    if (firstTouchPosition.x == 100) {
+        firstTouchPosition = p;
+        youHaveTwoPoints = NO;
+    } else
+    if (secondTouchPosition.x == 100) {
+        secondTouchPosition = p;
+        youHaveTwoPoints = YES;
+    }
+}
+
+- (void) clearPoints {
+    firstTouchPosition = secondTouchPosition = NSMakePoint(100, 100);
+}
+
+
+- (void) createArrayOfDiagonals {
+    arrayOfDiagonals = [NSMutableArray arrayWithCapacity:11];
+    
+    NSUInteger step = 1;
+    NSInteger valueX = 0;
+    NSInteger valueY = 4;
+    NSInteger stepX = valueX;
+    NSInteger stepY = valueY;
+    for (int i = 0; i < 11; i++) {
+        
+        while (stepX < 8 && stepY < 8) {
+            if ([arrayOfDiagonals count] == i) {
+                [arrayOfDiagonals addObject:[NSMutableArray array]];
+            }
+            [[arrayOfDiagonals objectAtIndex:i] addObject:[NSValue valueWithPoint:NSMakePoint(stepX, stepY)]];
+            stepX += step;
+            stepY++;
+        }
+    }
+}
+
+
+
+
+
+
+
 
 @end

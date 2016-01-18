@@ -21,6 +21,7 @@ typedef enum {
     BOOL firstTouch;
     BOOL secondTouch;
     NSPoint oldPosition;
+    Engine *myEngine;
     Players *myPlayer;
     Players *opponentPlayer;
     Move whichMove;
@@ -33,7 +34,6 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.field.pointerPosition = NSMakePoint(0, 0);
-    self.field.arrayOfAllCheckers = [NSMutableArray array];
     self.field.dictionaryOfAllField = [NSMutableDictionary dictionaryWithCapacity:32];
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
@@ -53,23 +53,9 @@ typedef enum {
 }
 
 - (IBAction)startButton:(id)sender {
-    
+    myEngine = [[Engine alloc] init];
+    self.field.dictionaryOfAllField = [myEngine returnFirstLaunchFieldDictionary];
     self.field.isStartGame = YES;
-    myPlayer = [[Players alloc] initMe];
-    opponentPlayer = [[Players alloc] initOpponent];
-    for (Checkers *check in myPlayer.arrayOfCheckers) {
-        [self.field.dictionaryOfAllField setObject:@"White"
-                                            forKey:NSStringFromPoint(check.position)];
-        
-    }
-    for (Checkers *check in opponentPlayer.arrayOfCheckers) {
-        [self.field.dictionaryOfAllField setObject:@"Black"
-                                            forKey:NSStringFromPoint(check.position)];
-    }
-    
-    [self.field.arrayOfAllCheckers addObjectsFromArray:myPlayer.arrayOfCheckers];
-    [self.field.arrayOfAllCheckers addObjectsFromArray:opponentPlayer.arrayOfCheckers];
-    NSLog(@"%@", self.field.dictionaryOfAllField);
     [self.field setNeedsDisplay:YES];
 }
 
@@ -103,7 +89,7 @@ typedef enum {
 }
 
 - (IBAction)chooseButton:(id)sender {
-    NSMutableDictionary *bufDictionary = [NSMutableDictionary dictionary];
+  /*  NSMutableDictionary *bufDictionary = [NSMutableDictionary dictionary];
     
     if (((int)self.field.pointerPosition.x + (int)self.field.pointerPosition.y) % 2 == 0) {
         if (!firstTouch) {
@@ -133,37 +119,9 @@ typedef enum {
             }
             self.field.dictionaryOfAllField = bufDictionary;
         }
-    }
-    
-    /*if ([[self.field.dictionaryOfAllField objectForKey:[NSString
-     stringWithFormat:@"%d;%d",(int)self.field.pointerPosition.x, (int)self.field.pointerPosition.y]] isEqualToString:@"white"]) {
-     oldPosition = NSMakePoint(self.field.pointerPosition.x, self.field.pointerPosition.y);
-     self.field.isChose = YES;
-     jknkjjbjhbkjbln.
-     
-     
-     
-     }
-     if ([[self.field.dictionaryOfAllField objectForKey:[NSString
-     stringWithFormat:@"%d;%d",(int)self.field.pointerPosition.x, (int)self.field.pointerPosition.y]] isEqualToString:@"black"]) {
-     self.field.isChose = NO;
-     }
-     if ([[self.field.dictionaryOfAllField objectForKey:[NSString
-     stringWithFormat:@"%d;%d",(int)self.field.pointerPosition.x, (int)self.field.pointerPosition.y]] isEqualToString:@"nil"]) {
-     if (secondTouch) {
-     if ((oldPosition.x == self.field.pointerPosition.x + 1 || oldPosition.x == self.field.pointerPosition.x - 1) && oldPosition.y == self.field.pointerPosition.y - 1) {
-     [self.field.dictionaryOfAllField setObject:@"nil" forKey:[NSString stringWithFormat:@"%d;%d", (int) oldPosition.x, (int) oldPosition.y]];
-     [self.field.dictionaryOfAllField setObject:@"white" forKey:[NSString stringWithFormat:@"%d;%d", (int) self.field.pointerPosition.x, (int) self.field.pointerPosition.y]];
-     for (Checkers *check in myPlayer.arrayOfCheckers) {
-     if (check.position.x == oldPosition.x && check.position.y == oldPosition.y) {
-     check.position = NSMakePoint(self.field.pointerPosition.x, self.field.pointerPosition.y);
-     }
-     }
-     }
-     }
-     self.field.isChose = NO;
-     }*/
-    
+    }*/
+    [myEngine makeTransformationWithPoint:self.field.pointerPosition];
     [self.field setNeedsDisplay:YES];
 }
+
 @end

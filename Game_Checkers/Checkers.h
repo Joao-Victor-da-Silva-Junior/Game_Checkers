@@ -11,5 +11,8 @@
 @interface Checkers : NSObject
 
 @property (assign, nonatomic) NSPoint position;
+
 @property (assign, nonatomic) BOOL isWhite;
+@property (assign, nonatomic) BOOL isDamka;
+
 @end
