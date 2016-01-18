@@ -169,20 +169,41 @@
 - (void) createArrayOfDiagonals {
     arrayOfDiagonals = [NSMutableArray arrayWithCapacity:11];
     
-    NSUInteger step = 1;
+    __block NSInteger step = 1;
     NSInteger valueX = 0;
     NSInteger valueY = 4;
-    NSInteger stepX = valueX;
-    NSInteger stepY = valueY;
-    for (int i = 0; i < 11; i++) {
-        
-        while (stepX < 8 && stepY < 8) {
+    void (^creator)(NSInteger, NSInteger, int) = ^(NSInteger stepForX, NSInteger stepForY, int i) {
+        while (stepForX < 8 && stepForY < 8 && stepForX >= 0 && stepForY >= 0) {
             if ([arrayOfDiagonals count] == i) {
                 [arrayOfDiagonals addObject:[NSMutableArray array]];
             }
-            [[arrayOfDiagonals objectAtIndex:i] addObject:[NSValue valueWithPoint:NSMakePoint(stepX, stepY)]];
-            stepX += step;
-            stepY++;
+            [[arrayOfDiagonals objectAtIndex:i] addObject:[NSValue valueWithPoint:NSMakePoint(stepForX, stepForY)]];
+            NSLog(@"%@",NSStringFromPoint(NSMakePoint(stepForX, stepForY)));
+            stepForX += step;
+            stepForY++;
+            i++;
+        }
+    };
+
+    for (int i = 0; i < 11; i++) {
+        NSLog(@"next");
+        if (i < 3) {
+            valueX = 0;
+            valueY = 4;
+            creator(valueX, valueY - (2 * i), i);
+        } else if (i < 5) {
+            valueX = 2;
+            valueY = 0;
+            creator(valueX + (2 * (i - 3)), valueY, i);
+        } else if (i < 8) {
+            step = -1;
+            valueX = 2;
+            valueY = 0;
+            creator(valueX + (2 * (i - 5)), valueY, i);
+        } else {
+            valueX = 7;
+            valueY = 1;
+            creator(valueX, valueY + 2 * (i - 8), i);
         }
     }
 }
