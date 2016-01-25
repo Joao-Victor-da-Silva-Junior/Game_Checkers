@@ -63,6 +63,7 @@
         [self whoIsEnemy];
         if ([self isMovePossible]) {
             if ([self makeMove]) {
+                [self becameKing];
                 [self changeSide];
             }
         };
@@ -253,6 +254,21 @@
         _whichMove = @"B";
     } else {
         _whichMove = @"W";
+    }
+}
+
+- (void) becameKing {
+    for (int j = 0; j < 4; j++) {
+        if ([firstPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(NSMakePoint((j * 2) + 1, 7))]) {
+            Checkers *checker = [firstPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(NSMakePoint((j * 2) + 1, 7))];
+            checker.isDamka = YES;
+            NSLog(@"Damka!");
+        }
+        if ([secondPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(NSMakePoint(j * 2, 0))]) {
+            Checkers *checker = [secondPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(NSMakePoint(j * 2, 0))];
+            checker.isDamka = YES;
+            NSLog(@"Damka!");
+        }
     }
 }
 

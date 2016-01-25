@@ -42,7 +42,7 @@
     
     for (NSString *key in self.dictionaryOfAllField) {
         if (![[self.dictionaryOfAllField objectForKey:key] isEqualToString:@"nil"]) {
-            if ([[self.dictionaryOfAllField objectForKey:key] isEqualToString:@"White"]) {
+            if ([[self.dictionaryOfAllField objectForKey:key] containsString:@"White"]) {
                 [[NSColor whiteColor] set];
             } else {
                 [[NSColor blackColor] set];
@@ -51,6 +51,17 @@
             [circlePath appendBezierPathWithOvalInRect:NSMakeRect(5 + (50 * (int)NSPointFromString(key).x), 5 + (50 * (int)NSPointFromString(key).y), 40, 40)];
             [circlePath stroke];
             [circlePath fill];
+            if ([[self.dictionaryOfAllField objectForKey:key] containsString:@"D"]) {
+                NSBezierPath *kingPath = [NSBezierPath bezierPath];
+                if ([[self.dictionaryOfAllField objectForKey:key] containsString:@"White"]) {
+                    [[NSColor blackColor] set];
+                } else {
+                    [[NSColor whiteColor] set];
+                }
+                [kingPath appendBezierPathWithOvalInRect:NSMakeRect(20 + (50 * (int)NSPointFromString(key).x), 20 + (50 * (int)NSPointFromString(key).y), 10, 10)];
+                [kingPath stroke];
+                [kingPath fill];
+            }
         }
     }
 }

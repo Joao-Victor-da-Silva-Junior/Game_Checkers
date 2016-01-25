@@ -43,7 +43,12 @@
 - (NSMutableDictionary *) returnDictionaryOfColors {
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionary];
     for (NSString *key in self.dictionaryOfCheckers) {
-        [returnDictionary setObject:self.isWhite? @"White":@"Black" forKey:key];
+        Checkers *check = [self.dictionaryOfCheckers objectForKey:key];
+        if (check.isDamka) {
+            [returnDictionary setObject:self.isWhite? @"WhiteD":@"BlackD" forKey:key];
+        } else {
+            [returnDictionary setObject:self.isWhite? @"White":@"Black" forKey:key];
+        }
     }
     return returnDictionary;
 }
