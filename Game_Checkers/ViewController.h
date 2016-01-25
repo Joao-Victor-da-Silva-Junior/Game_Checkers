@@ -12,6 +12,8 @@
 @interface ViewController : NSViewController
 
 @property (weak, nonatomic) IBOutlet FieldView *field;
+@property (weak, nonatomic) IBOutlet NSTextField *messageField;
+@property (weak, nonatomic) IBOutlet NSSegmentedControl *sideControl;
 
 - (IBAction)startButton:(id)sender;
 - (IBAction)controlButton:(id)sender;

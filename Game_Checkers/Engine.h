@@ -11,18 +11,11 @@
 @interface Engine : NSObject
 
 @property (assign, nonatomic) NSString *whichMove;
+@property (assign, nonatomic) BOOL needRedIndicator;
 
 #pragma mark - Class Methods
 
-+ (BOOL) indicatorSetterOnCoordinate:(NSPoint) point
-                 withFieldDictionary:(NSMutableDictionary *) dictionary
-                       andPlayerMove:(NSString *) move;
-
-+ (NSMutableDictionary *) makeMoveWithFirstTouch:(NSPoint) firstPoint
-                                     SecondTouch:(NSPoint) secondPoint
-                                      playerMove:(NSString *) move
-                              andFieldDictionary:(NSMutableDictionary *) fieldDictionary;
-
+- (instancetype)initWithSide:(NSString *) str;
 
 #pragma mark - Object Methods
 

@@ -13,12 +13,15 @@
 
 @interface Engine () {
     BOOL youHaveTwoPoints;
-    NSPoint firstTouchPosition;
-    NSPoint secondTouchPosition;
-    NSMutableDictionary *fieldDictionary;
-    NSMutableArray *arrayOfDiagonals;
-    Players *myPlayer;
-    Players *opponentPlayer;
+    NSPoint firstTouchPos;
+    NSPoint secondTouchPos;
+    NSMutableDictionary *fieldDictionary;  // {1,1} - White/black (simple representation for field)
+    NSMutableArray *arrayOfDiagonals;      // All diagonals of field
+    NSInteger walkingDiagonal;
+    Players *firstPlayer;
+    Players *secondPlayer;
+    Players *friendPlayer;
+    Players *enemyPlayer;
 }
 
 @end
@@ -27,148 +30,72 @@
 
 #pragma mark - Init Method
 
-- (instancetype)init
+- (instancetype)initWithSide:(NSString *)str
 {
     self = [super init];
     if (self) {
-        _whichMove = @"White";
-        firstTouchPosition = secondTouchPosition = NSMakePoint(100, 100);
+        _whichMove = str;
+        _needRedIndicator = NO;
+        firstTouchPos = secondTouchPos = NSMakePoint(100, 100);
     }
     return self;
 }
 
 #pragma mark - Class Methods
 
-+ (BOOL) indicatorSetterOnCoordinate:(NSPoint) point
-                 withFieldDictionary:(NSMutableDictionary *) dictionary
-                       andPlayerMove:(NSString *) move {
-    if ([[dictionary objectForKey:NSStringFromPoint(point)] isEqualToString:move]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-+ (NSMutableDictionary *) makeMoveWithFirstTouch:(NSPoint) firstPoint
-                                     SecondTouch:(NSPoint) secondPoint
-                                      playerMove:(NSString *) move
-                              andFieldDictionary:(NSMutableDictionary *) fieldDictionary {
-    
-    CGFloat difference = fabs(firstPoint.y - secondPoint.y);
-    NSUInteger direction;
-    if ([move isEqualToString:@"White"]) {
-        difference = secondPoint.y - firstPoint.y;
-        direction = 1;
-    } else {
-        difference = firstPoint.y - secondPoint.y;
-        direction = -1;
-    }
-    
-    if ([[fieldDictionary objectForKey:NSStringFromPoint(firstPoint)] isEqualToString:move]) {
-        NSLog(@"correct choose");
-        if ((firstPoint.x == secondPoint.x + 1 || firstPoint.x == secondPoint.x - 1) && difference == 1) {
-            NSLog(@"possible move");
-            if (![[fieldDictionary objectForKey:NSStringFromPoint(secondPoint)] isEqualToString:move]) {
-                NSLog(@"nil or enemy check");
-                if (fieldDictionary [NSStringFromPoint(secondPoint)] != nil) {
-                    NSLog(@"ENEMY!!");
-                    if (secondPoint.x < 7 && secondPoint.x > 0 && secondPoint.y > 0 && secondPoint.y < 7) {
-                        NSLog(@"can eat");
-                        NSPoint newPoint;
-                        if (firstPoint.x > secondPoint.x) {
-                            newPoint.x = secondPoint.x - 1;
-                        } else {
-                            newPoint.x = secondPoint.x + 1;
-                        }
-                        if (firstPoint.y > secondPoint.y) {
-                            newPoint.y = secondPoint.y - 1;
-                            NSLog(@"Black eat white");
-                            [fieldDictionary setObject:@"nil" forKey:NSStringFromPoint(firstPoint)];
-                            [fieldDictionary setObject:@"nil" forKey:NSStringFromPoint(secondPoint)];
-                            [fieldDictionary setObject:@"Black" forKey:NSStringFromPoint(newPoint)];
-                        } else {
-                            NSLog(@"white eat black");
-                            newPoint.y = secondPoint.y + 1;
-                            [fieldDictionary setObject:@"nil" forKey:NSStringFromPoint(firstPoint)];
-                            [fieldDictionary setObject:@"nil" forKey:NSStringFromPoint(secondPoint)];
-                            [fieldDictionary setObject:@"White" forKey:NSStringFromPoint(newPoint)];
-                        }
-                    } else {
-                        NSLog(@"cannot eat");
-                        return nil;
-                    }
-                } else {
-                    NSLog(@"nothing, make move");
-                    if ([move isEqualToString:@"White"]) {
-                        NSLog(@"change White");
-                        [fieldDictionary setObject:@"nil" forKey:NSStringFromPoint(firstPoint)];
-                        [fieldDictionary setObject:@"White" forKey:NSStringFromPoint(secondPoint)];
-                    } else {
-                        NSLog(@"change Black");
-                        [fieldDictionary setObject:@"nil" forKey:NSStringFromPoint(firstPoint)];
-                        [fieldDictionary setObject:@"Black" forKey:NSStringFromPoint(secondPoint)];
-                    }
-                }
-            } else {
-                NSLog(@"your check");
-                return nil;
-            }
-        } else {
-            NSLog(@"unpossible move");
-            return nil;
-        }
-    } else {
-        NSLog(@"uncorrect choose");
-        return nil;
-    }
-    
-    return fieldDictionary;
-}
-
 #pragma mark - Object Methods
 
 - (NSMutableDictionary *) returnFirstLaunchFieldDictionary {
     
     fieldDictionary = [NSMutableDictionary dictionary];
-    myPlayer = [[Players alloc] initWhite:YES];
-    opponentPlayer = [[Players alloc] initWhite:NO];
-    [fieldDictionary addEntriesFromDictionary:[myPlayer returnDictionaryOfColors]];
-    [fieldDictionary addEntriesFromDictionary:[opponentPlayer returnDictionaryOfColors]];
+    firstPlayer = [[Players alloc] initWhite:YES];
+    secondPlayer = [[Players alloc] initWhite:NO];
+    [fieldDictionary addEntriesFromDictionary:[firstPlayer returnDictionaryOfColors]];
+    [fieldDictionary addEntriesFromDictionary:[secondPlayer returnDictionaryOfColors]];
     [self createArrayOfDiagonals];
-    
+    [self setCheckersToFieldDictionary];
     return fieldDictionary;
 }
 
 - (NSMutableDictionary *) makeTransformationWithPoint:(NSPoint) point {
     [self setPoints:point];
     if (youHaveTwoPoints) {
-        NSLog(@"TWO POINTS");
+        [self whoIsEnemy];
+        if ([self isMovePossible]) {
+            if ([self makeMove]) {
+                [self changeSide];
+            }
+        };
         [self clearPoints];
     }
-    
-    
+    [fieldDictionary removeAllObjects];
+    [fieldDictionary addEntriesFromDictionary:[firstPlayer returnDictionaryOfColors]];
+    [fieldDictionary addEntriesFromDictionary:[secondPlayer returnDictionaryOfColors]];
     return fieldDictionary;
 }
 
 - (void) setPoints:(NSPoint) p {
-    if (firstTouchPosition.x == 100) {
-        firstTouchPosition = p;
+    if (firstTouchPos.x == 100) {
+        if ([fieldDictionary objectForKey:NSStringFromPoint(p)]) {
+            _needRedIndicator = YES;
+            firstTouchPos = p;
+        }
         youHaveTwoPoints = NO;
     } else
-    if (secondTouchPosition.x == 100) {
-        secondTouchPosition = p;
+    if (secondTouchPos.x == 100) {
+        _needRedIndicator = NO;
+        secondTouchPos = p;
         youHaveTwoPoints = YES;
     }
 }
 
 - (void) clearPoints {
-    firstTouchPosition = secondTouchPosition = NSMakePoint(100, 100);
+    firstTouchPos = secondTouchPos = NSMakePoint(100, 100);
 }
 
-
 - (void) createArrayOfDiagonals {
-    arrayOfDiagonals = [NSMutableArray arrayWithCapacity:11];
     
+    arrayOfDiagonals = [NSMutableArray arrayWithCapacity:11];
     __block NSInteger step = 1;
     NSInteger valueX = 0;
     NSInteger valueY = 4;
@@ -178,15 +105,12 @@
                 [arrayOfDiagonals addObject:[NSMutableArray array]];
             }
             [[arrayOfDiagonals objectAtIndex:i] addObject:[NSValue valueWithPoint:NSMakePoint(stepForX, stepForY)]];
-            NSLog(@"%@",NSStringFromPoint(NSMakePoint(stepForX, stepForY)));
             stepForX += step;
             stepForY++;
-            i++;
         }
     };
 
     for (int i = 0; i < 11; i++) {
-        NSLog(@"next");
         if (i < 3) {
             valueX = 0;
             valueY = 4;
@@ -208,11 +132,128 @@
     }
 }
 
+- (void) setCheckersToFieldDictionary {
+    NSMutableArray *array = [NSMutableArray arrayWithObjects:firstPlayer.dictionaryOfCheckers, secondPlayer.dictionaryOfCheckers, nil];
+    for (int i = 0; i < 2; i++) {
+        for (NSString *key in array[i]) {
+            Checkers *myCheck = [array[i] objectForKey:key];
+            myCheck.diagonalPosition = [self returnNewPointOnDiagonalWithPoint:myCheck.position];
+            NSLog(@"%@", NSStringFromPoint(myCheck.diagonalPosition));
+        }
+    }
+}
 
+- (void) whoIsEnemy {
+    if ([self.whichMove isEqualToString:@"W"]) {
+        friendPlayer = firstPlayer;
+        enemyPlayer = secondPlayer;
+    } else {
+        friendPlayer = secondPlayer;
+        enemyPlayer = firstPlayer;
+    }
+}
 
+- (BOOL) isMovePossible {
+    Checkers* currentCheck = [friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(firstTouchPos)];
+    NSMutableArray *arrayOfCurrentDiagonal;
+    
+    for (int j = 0; j < 2; j++) {
+        if (j == 0) {
+            arrayOfCurrentDiagonal = [arrayOfDiagonals objectAtIndex:currentCheck.diagonalPosition.x];
+        } else if (currentCheck.position.y != 100) {
+            arrayOfCurrentDiagonal = [arrayOfDiagonals objectAtIndex:currentCheck.diagonalPosition.y];
+        }
+        if ([arrayOfCurrentDiagonal containsObject:[NSValue valueWithPoint:secondTouchPos]]) {
+            
+            if (labs((NSInteger)[arrayOfCurrentDiagonal indexOfObject:[NSValue valueWithPoint:secondTouchPos]] - (NSInteger)[arrayOfCurrentDiagonal indexOfObject:[NSValue valueWithPoint:firstTouchPos]]) == 1) {
+                walkingDiagonal = [arrayOfDiagonals indexOfObject:arrayOfCurrentDiagonal];
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
 
+- (BOOL) makeMove {
+    if (![fieldDictionary objectForKey:NSStringFromPoint(secondTouchPos)]) {
+        NSLog(@"nothing");
+        Checkers *check = [friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(firstTouchPos)];
+        if (!check.isDamka) {
+            if ([_whichMove isEqualToString:@"W"]) {
+                if ([arrayOfDiagonals[walkingDiagonal] indexOfObject:[NSValue valueWithPoint:secondTouchPos]] < [arrayOfDiagonals[walkingDiagonal] indexOfObject:[NSValue valueWithPoint:firstTouchPos]]) {
+                    return NO;
+                }
+            } else if ([arrayOfDiagonals[walkingDiagonal] indexOfObject:[NSValue valueWithPoint:secondTouchPos]] > [arrayOfDiagonals[walkingDiagonal] indexOfObject:[NSValue valueWithPoint:firstTouchPos]]) {
+                return NO;
+            }
+        }
+        check.position = secondTouchPos;
+        check.diagonalPosition = [self returnNewPointOnDiagonalWithPoint:secondTouchPos];
+        [friendPlayer.dictionaryOfCheckers removeObjectForKey:NSStringFromPoint(firstTouchPos)];
+        [friendPlayer.dictionaryOfCheckers setObject:check forKey:NSStringFromPoint(secondTouchPos)];
+        return YES;
+    } else if ([enemyPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(secondTouchPos)]) {
+        NSLog(@"enemy");
+        NSLog(@"%ld", walkingDiagonal);
+        NSInteger diagPosFirst = 100;
+        NSInteger diagPosSec = 100;
+        NSInteger coef = 0;
+        for (int i = 0; i < [arrayOfDiagonals[walkingDiagonal] count]; i++) {
+            if ([arrayOfDiagonals[walkingDiagonal][i] pointValue].x == firstTouchPos.x && [arrayOfDiagonals[walkingDiagonal][i] pointValue].y == firstTouchPos.y) {
+                diagPosFirst = i;
+            }
+            if ([arrayOfDiagonals[walkingDiagonal][i] pointValue].x == secondTouchPos.x && [arrayOfDiagonals[walkingDiagonal][i] pointValue].y == secondTouchPos.y) {
+                diagPosSec = i;
+            }
+        }
+        if (diagPosSec > diagPosFirst)  {
+            if (diagPosSec != [arrayOfDiagonals[walkingDiagonal] count]-1) {
+                coef = 1;
+            }
+        } else if (diagPosSec > 0) {
+            coef = -1;
+        }
+        if (!coef) {
+            return NO;
+        }
+        if (![fieldDictionary objectForKey:NSStringFromPoint([arrayOfDiagonals[walkingDiagonal][diagPosSec + coef] pointValue])]) {
+            Checkers *check = [friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(firstTouchPos)];
+            check.position = [arrayOfDiagonals[walkingDiagonal][diagPosSec + coef] pointValue];
+            check.diagonalPosition = [self returnNewPointOnDiagonalWithPoint:check.position];
+            [friendPlayer.dictionaryOfCheckers removeObjectForKey:NSStringFromPoint(firstTouchPos)];
+            [friendPlayer.dictionaryOfCheckers setObject:check forKey:NSStringFromPoint(check.position)];
+            [enemyPlayer.dictionaryOfCheckers removeObjectForKey:NSStringFromPoint(secondTouchPos)];
+            return YES;
+        } else {
+            NSLog(@"cannot eat");
+        }
+    }
+    return NO;
+}
 
+- (NSPoint) returnNewPointOnDiagonalWithPoint:(NSPoint) recievedPoint {
+    NSPoint returnPoint = NSMakePoint(100, 100);
+    for (NSMutableArray *array in arrayOfDiagonals) {
+        for (id value in array) {
+            NSPoint point = [value pointValue];
+            if (point.x == recievedPoint.x && point.y == recievedPoint.y) {
+                if (returnPoint.x == 100) {
+                    returnPoint.x = [arrayOfDiagonals indexOfObject:array];
+                } else {
+                    returnPoint.y = [arrayOfDiagonals indexOfObject:array];
+                }
+            }
+        }
+    }
+    return returnPoint;
+}
 
-
+- (void) changeSide {
+    if ([_whichMove isEqualToString:@"W"]) {
+        _whichMove = @"B";
+    } else {
+        _whichMove = @"W";
+    }
+}
 
 @end

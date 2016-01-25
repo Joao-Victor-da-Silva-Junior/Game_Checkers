@@ -45,6 +45,7 @@ typedef enum {
     firstTouch = NO;
     secondTouch = NO;
     whichMove = moveIsWhite;
+    self.messageField.stringValue = @"Welcome To Checkers!";
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -53,9 +54,16 @@ typedef enum {
 }
 
 - (IBAction)startButton:(id)sender {
-    myEngine = [[Engine alloc] init];
+    if (!_sideControl.selectedSegment) {
+        myEngine = [[Engine alloc] initWithSide:@"W"];
+        self.messageField.stringValue = @"you choose white";
+    } else {
+        myEngine = [[Engine alloc] initWithSide:@"B"];
+        self.messageField.stringValue = @"you choose black";
+    }
     self.field.dictionaryOfAllField = [myEngine returnFirstLaunchFieldDictionary];
     self.field.isStartGame = YES;
+    
     [self.field setNeedsDisplay:YES];
 }
 
@@ -89,38 +97,13 @@ typedef enum {
 }
 
 - (IBAction)chooseButton:(id)sender {
-  /*  NSMutableDictionary *bufDictionary = [NSMutableDictionary dictionary];
-    
-    if (((int)self.field.pointerPosition.x + (int)self.field.pointerPosition.y) % 2 == 0) {
-        if (!firstTouch) {
-            firstTouch = YES;
-            oldPosition = NSMakePoint(self.field.pointerPosition.x, self.field.pointerPosition.y);
-            self.field.isChose = [Engine indicatorSetterOnCoordinate:self.field.pointerPosition
-                                                 withFieldDictionary:self.field.dictionaryOfAllField
-                                                       andPlayerMove:whichMove ? @"Black" : @"White"];
-        } else {
-            firstTouch = NO;
-            secondTouch = YES;
-            self.field.isChose = NO;
-        }
-    }
-    
-    if (!firstTouch) {
-        bufDictionary = [Engine makeMoveWithFirstTouch:oldPosition
-                                           SecondTouch:self.field.pointerPosition
-                                            playerMove:whichMove ? @"Black" : @"White"
-                                    andFieldDictionary:self.field.dictionaryOfAllField];
-        NSLog(@"Engine works!");
-        if (bufDictionary != nil) {
-            if (whichMove == moveIsWhite) {
-                whichMove = moveIsBlack;
-            } else {
-                whichMove = moveIsWhite;
-            }
-            self.field.dictionaryOfAllField = bufDictionary;
-        }
-    }*/
     [myEngine makeTransformationWithPoint:self.field.pointerPosition];
+    self.field.isChose = myEngine.needRedIndicator;
+    if ([myEngine.whichMove isEqualToString:@"W"]) {
+        self.messageField.stringValue = @"White, attack!";
+    } else {
+        self.messageField.stringValue = @"Black, attack!";
+    }
     [self.field setNeedsDisplay:YES];
 }
 

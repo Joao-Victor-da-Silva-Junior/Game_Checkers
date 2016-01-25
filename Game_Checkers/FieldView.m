@@ -62,6 +62,7 @@
     pointer.lineWidth = 4.f;
     [pointer stroke];
 }
+
 - (void) setRedPointer {
     NSBezierPath *pointer = [NSBezierPath bezierPath];
     [pointer appendBezierPathWithRect:NSMakeRect(_pointerPosition.x*50, _pointerPosition.y*50, 50, 50)];

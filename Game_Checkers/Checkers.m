@@ -10,4 +10,13 @@
 
 @implementation Checkers
 
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _diagonalPosition = NSMakePoint(100, 100);
+    }
+    return self;
+}
 @end

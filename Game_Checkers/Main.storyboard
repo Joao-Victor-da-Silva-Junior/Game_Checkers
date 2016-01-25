@@ -677,7 +677,7 @@
                                 <rect key="frame" x="100" y="180" width="400" height="400"/>
                             </customView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lD4-UU-huG">
-                                <rect key="frame" x="185" y="132" width="69" height="32"/>
+                                <rect key="frame" x="183" y="132" width="69" height="32"/>
                                 <buttonCell key="cell" type="push" title="start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JiX-AM-ALS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -687,14 +687,14 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcH-pO-Xzc">
-                                <rect key="frame" x="349" y="132" width="65" height="32"/>
+                                <rect key="frame" x="336" y="132" width="81" height="32"/>
                                 <buttonCell key="cell" type="push" title="new" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MYD-bl-FGJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m7O-Bn-dJj">
-                                <rect key="frame" x="257" y="68" width="87" height="32"/>
+                                <rect key="frame" x="252" y="99" width="87" height="32"/>
                                 <buttonCell key="cell" type="push" title="Choose" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MpG-6B-fOH">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -706,7 +706,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="bmN-II-dJ9">
-                                <rect key="frame" x="263" y="35" width="75" height="32"/>
+                                <rect key="frame" x="252" y="66" width="87" height="32"/>
                                 <buttonCell key="cell" type="push" title="Down" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R55-SQ-t7g">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -718,7 +718,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="yVm-sB-9KH">
-                                <rect key="frame" x="341" y="68" width="81" height="32"/>
+                                <rect key="frame" x="336" y="99" width="81" height="32"/>
                                 <buttonCell key="cell" type="push" title="Right" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sz2-Kd-AjY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -730,7 +730,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="duC-gR-Fvs">
-                                <rect key="frame" x="188" y="68" width="64" height="32"/>
+                                <rect key="frame" x="183" y="99" width="69" height="32"/>
                                 <buttonCell key="cell" type="push" title="Left" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PHz-Dt-Oxg">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -742,7 +742,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ATZ-Gu-neQ">
-                                <rect key="frame" x="260" y="101" width="81" height="32"/>
+                                <rect key="frame" x="252" y="132" width="87" height="32"/>
                                 <buttonCell key="cell" type="push" title="Up" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="It9-PD-0e3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -753,10 +753,30 @@
                                     <action selector="controlButton:" target="XfG-lQ-9wD" id="4JH-Hi-9Np"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="733-OS-sYz">
+                                <rect key="frame" x="100" y="20" width="405" height="45"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" id="a7m-vV-9Yr">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agb-HZ-Ljt">
+                                <rect key="frame" x="412" y="137" width="116" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="wOD-nL-gK6">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="White" selected="YES"/>
+                                        <segment label="Black" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="field" destination="wYs-GJ-0Pu" id="Dzk-6C-xO3"/>
+                        <outlet property="messageField" destination="733-OS-sYz" id="gxG-rS-ogT"/>
+                        <outlet property="sideControl" destination="agb-HZ-Ljt" id="MWR-JG-J25"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
