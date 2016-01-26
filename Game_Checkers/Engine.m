@@ -228,6 +228,7 @@
         if (!coef) {
             return NO;
         }
+        
         if (![fieldDictionary objectForKey:NSStringFromPoint([arrayOfDiagonals[walkingDiagonal][diagPosSec + coef] pointValue])]) {
             Checkers *check = [friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(firstTouchPos)];
             check.position = [arrayOfDiagonals[walkingDiagonal][diagPosSec + coef] pointValue];
