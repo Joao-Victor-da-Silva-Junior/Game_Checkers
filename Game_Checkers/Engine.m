@@ -13,6 +13,8 @@
 
 @interface Engine () {
     BOOL youHaveTwoPoints;
+    BOOL needEat;
+    BOOL continueEat;
     NSPoint firstTouchPos;
     NSPoint secondTouchPos;
     NSMutableDictionary *fieldDictionary;  // {1,1} - White/black (simple representation for field)
@@ -30,32 +32,31 @@
 
 #pragma mark - Init Method
 
-- (instancetype)initWithSide:(NSString *)str
-{
+- (instancetype)initWithSide:(NSString *)str {
+    
     self = [super init];
     if (self) {
         _whichMove = str;
         _needRedIndicator = NO;
+        needEat = NO;
+        continueEat = NO;
         firstTouchPos = secondTouchPos = NSMakePoint(100, 100);
     }
     return self;
 }
 
-#pragma mark - Class Methods
-
-#pragma mark - Object Methods
+#pragma mark - Main Methods
 
 - (NSMutableDictionary *) returnFirstLaunchFieldDictionary {
     
     fieldDictionary = [NSMutableDictionary dictionary];
     firstPlayer = [[Players alloc] initWhite:YES];
     secondPlayer = [[Players alloc] initWhite:NO];
-    [fieldDictionary addEntriesFromDictionary:[firstPlayer returnDictionaryOfColors]];
-    [fieldDictionary addEntriesFromDictionary:[secondPlayer returnDictionaryOfColors]];
+    [self updateFieldDictionary];
     [self createArrayOfDiagonals];
     [self setCheckersToFieldDictionary];
     return fieldDictionary;
-}
+} //Create Players, dictionary of field
 
 - (NSMutableDictionary *) makeTransformationWithPoint:(NSPoint) point {
     [self setPoints:point];
@@ -64,16 +65,19 @@
         if ([self isMovePossible]) {
             if ([self makeMove]) {
                 [self becameKing];
-                [self changeSide];
+                if (!continueEat) {
+                    [self changeSide];
+                }
             }
-        };
+        }
+        
         [self clearPoints];
     }
-    [fieldDictionary removeAllObjects];
-    [fieldDictionary addEntriesFromDictionary:[firstPlayer returnDictionaryOfColors]];
-    [fieldDictionary addEntriesFromDictionary:[secondPlayer returnDictionaryOfColors]];
+    [self updateFieldDictionary];
     return fieldDictionary;
 }
+
+#pragma mark - Moving Methods
 
 - (void) setPoints:(NSPoint) p {
     if (firstTouchPos.x == 100) {
@@ -96,7 +100,7 @@
 
 - (void) createArrayOfDiagonals {
     
-    arrayOfDiagonals = [NSMutableArray arrayWithCapacity:11];
+    arrayOfDiagonals = [NSMutableArray arrayWithCapacity:13];
     __block NSInteger step = 1;
     NSInteger valueX = 0;
     NSInteger valueY = 4;
@@ -111,25 +115,26 @@
         }
     };
 
-    for (int i = 0; i < 11; i++) {
-        if (i < 3) {
+    for (int i = 0; i < 13; i++) {
+        if (i < 4) {
             valueX = 0;
-            valueY = 4;
+            valueY = 6;
             creator(valueX, valueY - (2 * i), i);
-        } else if (i < 5) {
+        } else if (i < 7) {
             valueX = 2;
             valueY = 0;
-            creator(valueX + (2 * (i - 3)), valueY, i);
-        } else if (i < 8) {
+            creator(valueX + (2 * (i - 4)), valueY, i);
+        } else if (i < 10) {
             step = -1;
             valueX = 2;
             valueY = 0;
-            creator(valueX + (2 * (i - 5)), valueY, i);
+            creator(valueX + (2 * (i - 7)), valueY, i);
         } else {
             valueX = 7;
             valueY = 1;
-            creator(valueX, valueY + 2 * (i - 8), i);
+            creator(valueX, valueY + 2 * (i - 10), i);
         }
+        NSLog(@"%@", arrayOfDiagonals[i]);
     }
 }
 
@@ -161,7 +166,7 @@
     for (int j = 0; j < 2; j++) {
         if (j == 0) {
             arrayOfCurrentDiagonal = [arrayOfDiagonals objectAtIndex:currentCheck.diagonalPosition.x];
-        } else if (currentCheck.position.y != 100) {
+        } else if (currentCheck.diagonalPosition.y != 100) {
             arrayOfCurrentDiagonal = [arrayOfDiagonals objectAtIndex:currentCheck.diagonalPosition.y];
         }
         if ([arrayOfCurrentDiagonal containsObject:[NSValue valueWithPoint:secondTouchPos]]) {
@@ -177,6 +182,9 @@
 
 - (BOOL) makeMove {
     if (![fieldDictionary objectForKey:NSStringFromPoint(secondTouchPos)]) {
+        if (needEat || continueEat) {
+            return NO;
+        }
         NSLog(@"nothing");
         Checkers *check = [friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(firstTouchPos)];
         if (!check.isDamka) {
@@ -192,6 +200,9 @@
         check.diagonalPosition = [self returnNewPointOnDiagonalWithPoint:secondTouchPos];
         [friendPlayer.dictionaryOfCheckers removeObjectForKey:NSStringFromPoint(firstTouchPos)];
         [friendPlayer.dictionaryOfCheckers setObject:check forKey:NSStringFromPoint(secondTouchPos)];
+        [self updateFieldDictionary];
+       // needEat = [self scanFieldWithPoint:check.position withConditionAfter:@"Move"];
+        needEat = [self fullScan];
         return YES;
     } else if ([enemyPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(secondTouchPos)]) {
         NSLog(@"enemy");
@@ -224,9 +235,12 @@
             [friendPlayer.dictionaryOfCheckers removeObjectForKey:NSStringFromPoint(firstTouchPos)];
             [friendPlayer.dictionaryOfCheckers setObject:check forKey:NSStringFromPoint(check.position)];
             [enemyPlayer.dictionaryOfCheckers removeObjectForKey:NSStringFromPoint(secondTouchPos)];
+            [self updateFieldDictionary];
+            continueEat = [self scanFieldWithPoint:check.position withConditionAfter:@"Eat"];
+            needEat = [self scanFieldWithPoint:check.position withConditionAfter:@"Move"];
             return YES;
         } else {
-            NSLog(@"cannot eat");
+            return NO;
         }
     }
     return NO;
@@ -262,14 +276,106 @@
         if ([firstPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(NSMakePoint((j * 2) + 1, 7))]) {
             Checkers *checker = [firstPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(NSMakePoint((j * 2) + 1, 7))];
             checker.isDamka = YES;
-            NSLog(@"Damka!");
         }
         if ([secondPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(NSMakePoint(j * 2, 0))]) {
             Checkers *checker = [secondPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(NSMakePoint(j * 2, 0))];
             checker.isDamka = YES;
-            NSLog(@"Damka!");
         }
     }
+}
+
+#pragma mark - Scan Methods
+
+- (BOOL) scanFieldWithPoint:(NSPoint) point withConditionAfter:(NSString *) str {
+    NSInteger coef;
+    NSRange range;
+    if ([str isEqualToString:@"Eat"]) {
+        coef = -1;
+    } else {
+        coef = 2;
+    }
+    Checkers *myCheck = [friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(point)];
+    NSMutableArray *searchingArray;
+    NSInteger currentIndex = 100;
+    if (myCheck.diagonalPosition.x == 100) {
+        return NO;
+    }
+    for (int i = 0; i < 4; i++) {
+        if (i < 2) {
+            searchingArray = [arrayOfDiagonals objectAtIndex:(int)myCheck.diagonalPosition.x];
+            currentIndex = [searchingArray indexOfObject:[NSValue valueWithPoint:myCheck.position]];
+        } else if (myCheck.diagonalPosition.y != 100) {
+            searchingArray = [arrayOfDiagonals objectAtIndex:(int)myCheck.diagonalPosition.y];
+            currentIndex = [searchingArray indexOfObject:[NSValue valueWithPoint:myCheck.position]];
+        }
+        if (i % 2) {
+            currentIndex++;
+            if (currentIndex - coef < 0) {
+                range = NSMakeRange(currentIndex, 1000);
+            } else {
+                range = NSMakeRange(currentIndex, currentIndex - coef);
+            }
+            NSLog(@"%@", NSStringFromRange(range));
+        } else {
+            currentIndex--;
+            if (currentIndex < 0) {
+                range = NSMakeRange(1000, currentIndex + coef);
+            } else {
+                range = NSMakeRange(currentIndex, currentIndex + coef);
+            }
+            NSLog(@"%@", NSStringFromRange(range));
+        }
+        
+        if (NSRangeContainsRange(NSMakeRange(0, [searchingArray count]), range)) {
+            if ([enemyPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([searchingArray[range.location] pointValue])]) {
+                if (![fieldDictionary objectForKey:NSStringFromPoint([searchingArray[range.length] pointValue])]) {
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;
+}
+
+- (BOOL) fullScan {
+    for (NSMutableArray *diagonalArray in arrayOfDiagonals) {
+        for (int j = 0; j < [diagonalArray count] - 2; j++) {
+            if ([enemyPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([diagonalArray[j] pointValue])]) {
+                if ([friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([diagonalArray[j + 1] pointValue])]) {
+                    if (![fieldDictionary objectForKey:NSStringFromPoint([diagonalArray[j + 2] pointValue])]) {
+                        NSLog(@"YES");
+                        return YES;
+                    }
+                }
+            }
+        }
+        for (int j = (int)[diagonalArray count]-1; j >= 2; j--) {
+            if ([enemyPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([diagonalArray[j] pointValue])]) {
+                if ([friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([diagonalArray[j - 1] pointValue])]) {
+                    if (![fieldDictionary objectForKey:NSStringFromPoint([diagonalArray[j - 2] pointValue])]) {
+                        NSLog(@"YES");
+                        return YES;
+                    }
+                }
+            }
+        }
+    }
+    return NO;
+}
+
+
+- (void) updateFieldDictionary {
+    [fieldDictionary removeAllObjects];
+    [fieldDictionary addEntriesFromDictionary:[firstPlayer returnDictionaryOfColors]];
+    [fieldDictionary addEntriesFromDictionary:[secondPlayer returnDictionaryOfColors]];
+}
+
+bool NSRangeContainsRange (NSRange range1, NSRange range2) {
+    BOOL retval = NO;
+    if (range2.location < range1.length && range2.length < range1.length) {
+        retval = YES;;
+    }
+    return retval;
 }
 
 @end
