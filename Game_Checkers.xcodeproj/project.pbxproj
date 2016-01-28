@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5516A5EE1C58D74300B6771F /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 5516A5ED1C58D74300B6771F /* Server.m */; };
 		8BEF61C71C49321100408924 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61C61C49321100408924 /* AppDelegate.m */; };
 		8BEF61CA1C49321100408924 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61C91C49321100408924 /* main.m */; };
 		8BEF61CD1C49321100408924 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF61CC1C49321100408924 /* ViewController.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5516A5EC1C58D74300B6771F /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		5516A5ED1C58D74300B6771F /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		8BEF61C21C49321100408924 /* Game_Checkers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game_Checkers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BEF61C51C49321100408924 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8BEF61C61C49321100408924 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -88,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5516A5EB1C58D72A00B6771F /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				5516A5EC1C58D74300B6771F /* Server.h */,
+				5516A5ED1C58D74300B6771F /* Server.m */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
 		8BEF61B91C49321100408924 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +123,7 @@
 		8BEF61C41C49321100408924 /* Game_Checkers */ = {
 			isa = PBXGroup;
 			children = (
+				5516A5EB1C58D72A00B6771F /* Server */,
 				8BEF62031C4D53FA00408924 /* Model */,
 				8BEF62041C4D540000408924 /* View */,
 				8BEF62051C4D540500408924 /* Controller */,
@@ -320,6 +333,7 @@
 			files = (
 				8BEF62001C494B5500408924 /* Players.m in Sources */,
 				8BEF61CD1C49321100408924 /* ViewController.m in Sources */,
+				5516A5EE1C58D74300B6771F /* Server.m in Sources */,
 				8BEF61F71C494B4000408924 /* Engine.m in Sources */,
 				8BEF61CA1C49321100408924 /* main.m in Sources */,
 				8BEF61FE1C494B5500408924 /* Checkers.m in Sources */,
@@ -536,6 +550,7 @@
 				8BEF61EE1C49321100408924 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BEF61EF1C49321100408924 /* Build configuration list for PBXNativeTarget "Game_CheckersTests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +559,7 @@
 				8BEF61F11C49321100408924 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BEF61F21C49321100408924 /* Build configuration list for PBXNativeTarget "Game_CheckersUITests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +568,7 @@
 				8BEF61F41C49321100408924 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

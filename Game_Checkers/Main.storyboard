@@ -698,8 +698,9 @@
                                 <buttonCell key="cell" type="push" title="Choose" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MpG-6B-fOH">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">/</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="chooseButton:" target="XfG-lQ-9wD" id="f8p-cm-xMQ"/>
@@ -711,7 +712,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent"></string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="controlButton:" target="XfG-lQ-9wD" id="mTR-Es-kbl"/>
@@ -723,7 +723,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent"></string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="controlButton:" target="XfG-lQ-9wD" id="P7o-lv-pP1"/>
@@ -735,7 +734,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent"></string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="controlButton:" target="XfG-lQ-9wD" id="2KB-K8-EL5"/>
@@ -747,7 +745,6 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent"></string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="controlButton:" target="XfG-lQ-9wD" id="4JH-Hi-9Np"/>
@@ -762,7 +759,7 @@
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agb-HZ-Ljt">
-                                <rect key="frame" x="412" y="137" width="116" height="24"/>
+                                <rect key="frame" x="420" y="104" width="116" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="wOD-nL-gK6">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -771,11 +768,33 @@
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yss-j1-2g3">
+                                <rect key="frame" x="417" y="71" width="123" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="4Mk-Py-63M">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Server" selected="YES"/>
+                                        <segment label="Client" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e4G-pN-73C">
+                                <rect key="frame" x="421" y="137" width="115" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="2JA-S5-2aZ">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Single" selected="YES"/>
+                                        <segment label="Multi" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="connectionControl" destination="yss-j1-2g3" id="jTJ-1X-AAy"/>
                         <outlet property="field" destination="wYs-GJ-0Pu" id="Dzk-6C-xO3"/>
                         <outlet property="messageField" destination="733-OS-sYz" id="gxG-rS-ogT"/>
+                        <outlet property="playControl" destination="e4G-pN-73C" id="CFv-Z5-ic6"/>
                         <outlet property="sideControl" destination="agb-HZ-Ljt" id="MWR-JG-J25"/>
                     </connections>
                 </viewController>

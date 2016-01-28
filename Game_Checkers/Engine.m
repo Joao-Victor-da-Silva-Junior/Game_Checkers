@@ -22,8 +22,8 @@
     NSInteger walkingDiagonal;
     Players *firstPlayer;
     Players *secondPlayer;
-    Players *friendPlayer;
-    Players *enemyPlayer;
+    Players *friendPlayer; // friend/enemy for better representation, for Engine doesn't matter, who is who (Second or First player)
+    Players *enemyPlayer;  //
 }
 
 @end
@@ -40,6 +40,7 @@
         _needRedIndicator = NO;
         needEat = NO;
         continueEat = NO;
+        _wait = NO;
         firstTouchPos = secondTouchPos = NSMakePoint(100, 100);
     }
     return self;
@@ -66,7 +67,11 @@
             if ([self makeMove]) {
                 [self becameKing];
                 if (!continueEat) {
-                    [self changeSide];
+                    if (_wait) {
+                        _wait = NO;
+                    } else {
+                        [self changeSide];
+                    }
                 }
             }
         }
@@ -201,7 +206,6 @@
         [friendPlayer.dictionaryOfCheckers removeObjectForKey:NSStringFromPoint(firstTouchPos)];
         [friendPlayer.dictionaryOfCheckers setObject:check forKey:NSStringFromPoint(secondTouchPos)];
         [self updateFieldDictionary];
-       // needEat = [self scanFieldWithPoint:check.position withConditionAfter:@"Move"];
         needEat = [self fullScan];
         return YES;
     } else if ([enemyPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint(secondTouchPos)]) {
@@ -238,7 +242,7 @@
             [enemyPlayer.dictionaryOfCheckers removeObjectForKey:NSStringFromPoint(secondTouchPos)];
             [self updateFieldDictionary];
             continueEat = [self scanFieldWithPoint:check.position withConditionAfter:@"Eat"];
-            needEat = [self scanFieldWithPoint:check.position withConditionAfter:@"Move"];
+            needEat = [self fullScan];
             return YES;
         } else {
             return NO;
@@ -339,31 +343,36 @@
 }
 
 - (BOOL) fullScan {
-    for (NSMutableArray *diagonalArray in arrayOfDiagonals) {
-        for (int j = 0; j < [diagonalArray count] - 2; j++) {
-            if ([enemyPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([diagonalArray[j] pointValue])]) {
-                if ([friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([diagonalArray[j + 1] pointValue])]) {
-                    if (![fieldDictionary objectForKey:NSStringFromPoint([diagonalArray[j + 2] pointValue])]) {
-                        NSLog(@"YES");
-                        return YES;
-                    }
+    
+    __weak NSMutableDictionary *weakEnemyDict = enemyPlayer.dictionaryOfCheckers;
+    __weak NSMutableDictionary *weakFriendDict = friendPlayer.dictionaryOfCheckers;
+    __weak NSMutableDictionary *weakFieldDictionary = fieldDictionary;
+    
+    BOOL (^mustEat)(NSMutableArray*, int, int) = ^(NSMutableArray *array, int index, int coef) {
+        
+        if ([weakEnemyDict objectForKey:NSStringFromPoint([array[index] pointValue])]) {
+            if ([weakFriendDict objectForKey:NSStringFromPoint([array[index + coef] pointValue])]) {
+                if (![weakFieldDictionary objectForKey:NSStringFromPoint([array[index + 2*coef] pointValue])]) {
+                    return YES;
                 }
             }
         }
+        return NO;
+    };
+    for (NSMutableArray *diagonalArray in arrayOfDiagonals) {
+        for (int j = 0; j < [diagonalArray count] - 2; j++) {
+            if (mustEat(diagonalArray, j, 1)) {
+                return YES;
+            }
+        }
         for (int j = (int)[diagonalArray count]-1; j >= 2; j--) {
-            if ([enemyPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([diagonalArray[j] pointValue])]) {
-                if ([friendPlayer.dictionaryOfCheckers objectForKey:NSStringFromPoint([diagonalArray[j - 1] pointValue])]) {
-                    if (![fieldDictionary objectForKey:NSStringFromPoint([diagonalArray[j - 2] pointValue])]) {
-                        NSLog(@"YES");
-                        return YES;
-                    }
-                }
+            if (mustEat(diagonalArray, j, -1)) {
+                return YES;
             }
         }
     }
     return NO;
 }
-
 
 - (void) updateFieldDictionary {
     [fieldDictionary removeAllObjects];
@@ -377,6 +386,12 @@ bool NSRangeContainsRange (NSRange range1, NSRange range2) {
         retval = YES;;
     }
     return retval;
+}
+
+- (BOOL) waiting {
+    while (1) {
+    }
+    return YES;
 }
 
 @end

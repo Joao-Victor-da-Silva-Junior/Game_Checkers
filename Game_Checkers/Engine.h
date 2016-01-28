@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class Server;
 @interface Engine : NSObject
 
 @property (assign, nonatomic) NSString *whichMove;
 @property (assign, nonatomic) BOOL needRedIndicator;
+@property (assign, nonatomic) BOOL isMultiPleer;
+@property (assign, nonatomic) BOOL wait;
+@property (strong, nonatomic) Server *server;
 
 #pragma mark - Class Methods
 

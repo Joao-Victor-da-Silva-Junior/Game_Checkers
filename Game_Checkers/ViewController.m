@@ -11,6 +11,7 @@
 #import "Players.h"
 #import "Checkers.h"
 #import "Engine.h"
+#import "Server.h"
 
 typedef enum {
     moveIsWhite,
@@ -57,9 +58,18 @@ typedef enum {
     if (!_sideControl.selectedSegment) {
         myEngine = [[Engine alloc] initWithSide:@"W"];
         self.messageField.stringValue = @"you choose white";
+        if (_playControl.selectedSegment) {
+            myEngine.server = [[Server alloc] initClient];
+            myEngine.isMultiPleer = YES;
+        }
     } else {
         myEngine = [[Engine alloc] initWithSide:@"B"];
         self.messageField.stringValue = @"you choose black";
+        if (_playControl.selectedSegment) {
+            myEngine.server = [[Server alloc] initServer];
+            myEngine.isMultiPleer = YES;
+            myEngine.wait = YES;
+        }
     }
     self.field.dictionaryOfAllField = [myEngine returnFirstLaunchFieldDictionary];
     self.field.isStartGame = YES;
@@ -97,8 +107,12 @@ typedef enum {
 }
 
 - (IBAction)chooseButton:(id)sender {
+    if (myEngine.wait) {
+        
+    }
     [myEngine makeTransformationWithPoint:self.field.pointerPosition];
     self.field.isChose = myEngine.needRedIndicator;
+    
     if ([myEngine.whichMove isEqualToString:@"W"]) {
         self.messageField.stringValue = @"White, attack!";
     } else {
